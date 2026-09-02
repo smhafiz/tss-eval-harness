@@ -19,25 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-THIRD-PARTY COMPONENTS
-----------------------
-
-This repository contains no third-party source code. It references the
-following independently-licensed projects, each of which remains under its own
-license:
-
-  - bnb-chain/tss-lib (MIT) — resolved as a Go module dependency by
-    adapters/tss-lib; its source is not included here.
-
-  - Three-Round-Multiparty-ECDSA (MIT) — built from libs/, which is a fork of
-    https://github.com/Jiangjiang-jiang/Three-Round-Multiparty-ECDSA; the
-    orchestrator executes its `trecdsa-eval` binary as a subprocess.
-
-  - BICYCL (GNU GPL v3.0 or later) — a submodule of
-    Three-Round-Multiparty-ECDSA, reached only through that project.
-
-Note that a `trecdsa-eval` binary links BICYCL and is therefore subject to the
-GPL. That obligation attaches to such binaries, not to the source in this
-repository.
