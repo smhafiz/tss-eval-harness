@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "implementation": "tss-lib",
+  "protocol_name": "GG18 (9-round, Paillier)",
+  "git_commit": "3f677ff",
+  "security": {
+    "label": "secp256k1",
+    "enc_scheme": "Paillier",
+    "enc_modulus_bits": 2048
+  },
+  "params": {
+    "n": 5,
+    "t": 4,
+    "signers": 5
+  },
+  "trials": {
+    "setup_trials": 5,
+    "dkg_trials": 1,
+    "sign_trials": 8
+  },
+  "timing_ms": {
+    "setup": {
+      "mean": 4189.80015,
+      "min": 2168.296042,
+      "max": 6681.074875,
+      "stddev": 1763.8169212592381
+    },
+    "dkg_or_keygen": {
+      "mean": 3703.0692910000002,
+      "min": 3703.0692910000002,
+      "max": 3703.0692910000002,
+      "stddev": 0
+    },
+    "sign": {
+      "mean": 761.24239075,
+      "min": 752.095459,
+      "max": 779.807625,
+      "stddev": 8.373266613250994
+    },
+    "verify": {
+      "mean": 0.17243225,
+      "min": 0.167875,
+      "max": 0.1835,
+      "stddev": 0.004900288964693813
+    }
+  },
+  "throughput_sig_per_sec": 1.313642030647779,
+  "bandwidth_bytes": {
+    "total": 191398,
+    "per_party": 38279.6,
+    "per_round": [
+      {
+        "round_label": "round9",
+        "bytes": 520,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round1",
+        "bytes": 47165,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round3",
+        "bytes": 520,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round5",
+        "bytes": 520,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round7",
+        "bytes": 520,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round2",
+        "bytes": 137178,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round4",
+        "bytes": 1375,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round6",
+        "bytes": 2395,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round8",
+        "bytes": 1205,
+        "exactness": "exact"
+      }
+    ],
+    "per_round_comparable_across_impl": false
+  },
+  "object_sizes_bytes": {
+    "signature": 64,
+    "ec_public_key": 33,
+    "ec_key_share": 32,
+    "enc_public_key": 256,
+    "enc_key_share": 256,
+    "enc_ciphertext": 512
+  },
+  "correctness": {
+    "all_signatures_valid": true
+  },
+  "environment": {
+    "os": "darwin",
+    "impl_language": "go1.23"
+  },
+  "notes": ""
+}

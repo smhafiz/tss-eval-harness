@@ -1,0 +1,18 @@
+# The full (n,t) sweep. Columns: n, t, tsslib_mode.
+#
+# tsslib_mode is fixtures|live. tss-lib ships precomputed keygen fixtures for
+# exactly (n=5,t=2); that row uses them (setup/keygen serialize as null — see
+# SCHEMA.md caveat 8) and every other row runs live keygen for real numbers.
+#
+# tr-ecdsa has no such distinction: the mode column is ignored for it, and each
+# row is run once per security level in --levels.
+#
+# See orchestrator/smoke-grid.tsv for the 2-row subset used for fast
+# end-to-end checks before committing to a full run.
+#
+# n	t	tsslib_mode
+3	1	live
+3	2	live
+5	2	fixtures
+5	4	live
+10	5	live

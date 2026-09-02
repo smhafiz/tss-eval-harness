@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "implementation": "tss-lib",
+  "protocol_name": "GG18 (9-round, Paillier)",
+  "git_commit": "3f677ff",
+  "security": {
+    "label": "secp256k1",
+    "enc_scheme": "Paillier",
+    "enc_modulus_bits": 2048
+  },
+  "params": {
+    "n": 5,
+    "t": 2,
+    "signers": 3
+  },
+  "trials": {
+    "setup_trials": 0,
+    "dkg_trials": 0,
+    "sign_trials": 8
+  },
+  "timing_ms": {
+    "setup": null,
+    "dkg_or_keygen": null,
+    "sign": {
+      "mean": 298.278260625,
+      "min": 283.531416,
+      "max": 321.139167,
+      "stddev": 12.037019797281694
+    },
+    "verify": {
+      "mean": 0.16197899999999998,
+      "min": 0.160833,
+      "max": 0.16683299999999998,
+      "stddev": 0.0018537471510429867
+    }
+  },
+  "throughput_sig_per_sec": 3.3525741966734057,
+  "bandwidth_bytes": {
+    "total": 59694,
+    "per_party": 19898,
+    "per_round": [
+      {
+        "round_label": "round4",
+        "bytes": 825,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round5",
+        "bytes": 312,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round9",
+        "bytes": 312,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round6",
+        "bytes": 1437,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round7",
+        "bytes": 312,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round8",
+        "bytes": 723,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round1",
+        "bytes": 14307,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round2",
+        "bytes": 41154,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round3",
+        "bytes": 312,
+        "exactness": "exact"
+      }
+    ],
+    "per_round_comparable_across_impl": false
+  },
+  "object_sizes_bytes": {
+    "signature": 64,
+    "ec_public_key": 33,
+    "ec_key_share": 32,
+    "enc_public_key": 256,
+    "enc_key_share": 256,
+    "enc_ciphertext": 512
+  },
+  "correctness": {
+    "all_signatures_valid": true
+  },
+  "environment": {
+    "os": "darwin",
+    "impl_language": "go1.23"
+  },
+  "notes": "setup and keygen timing skipped: precomputed fixtures used (see SCHEMA.md caveat 8)"
+}

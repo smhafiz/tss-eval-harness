@@ -1,0 +1,9 @@
+# Transcribed from results/report_cl26_gg18.md (112-bit tr-ecdsa / "CL26" rows).
+# NOT adapter output. Blank cells were never recorded in the report.
+# git_commit inferred from the one surviving tr-ecdsa result file.
+implementation,security_label,n,t,setup_mean_ms,dkg_or_keygen_mean_ms,sign_mean_ms,sign_stddev_ms,verify_mean_ms,throughput_sig_per_sec,bandwidth_total_bytes,bandwidth_per_party_bytes,sig_bytes,ec_pubkey_bytes,ec_share_bytes,enc_pubkey_bytes,enc_share_bytes,enc_ciphertext_bytes,all_signatures_valid,git_commit,provenance
+tr-ecdsa,112,3,1,149.2,34.0,694.6,5.9,0.127,1.44,9317,4658,56,29,28,224,74,450,True,ac2b168,recovered-from-report
+tr-ecdsa,112,3,2,148.2,34.0,1308.9,21.5,0.183,0.76,13967,4656,56,29,28,224,74,450,True,ac2b168,recovered-from-report
+tr-ecdsa,112,5,2,145.6,48.2,1368.5,10.5,0.184,0.73,13976,4659,56,29,28,224,75,450,True,ac2b168,recovered-from-report
+tr-ecdsa,112,5,4,138.4,50.2,3410.8,8.6,0.332,0.29,23295,4659,56,29,28,224,75,450,True,ac2b168,original-json-survives
+tr-ecdsa,112,10,5,135.8,86.4,4507.1,45.6,0.364,0.22,27935,4656,56,29,28,226,77,450,True,ac2b168,recovered-from-report

@@ -1,0 +1,6 @@
+# Small 2-cell grid for end-to-end smoke testing (see orchestrator/grid.tsv for
+# the full sweep). (5,2) uses tss-lib fixtures for speed.
+#
+# n	t	tsslib_mode
+3	1	live
+5	2	fixtures

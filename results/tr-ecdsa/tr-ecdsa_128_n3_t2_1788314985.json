@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "implementation": "tr-ecdsa",
+  "protocol_name": "TR-ECDSA (3-round, CL-HSM)",
+  "git_commit": "unknown",
+  "security": {
+    "label": "128",
+    "enc_scheme": "CL_HSMqk",
+    "enc_modulus_bits": null
+  },
+  "params": { "n": 3, "t": 2, "signers": 3 },
+  "trials": { "setup_trials": 2, "dkg_trials": 2, "sign_trials": 8 },
+  "timing_ms": {
+    "setup": { "mean": 281.515146, "min": 280.806125, "max": 282.224167, "stddev": 0.709021 },
+    "dkg_or_keygen": { "mean": 57.1309165, "min": 57.109333, "max": 57.1525, "stddev": 0.0215835 },
+    "sign": { "mean": 2206.24187, "min": 2188.43804, "max": 2258.49192, "stddev": 21.6470527 },
+    "verify": { "mean": 0.1540885, "min": 0.149459, "max": 0.166208, "stddev": 0.00560309651 }
+  },
+  "throughput_sig_per_sec": 0.453259461,
+  "bandwidth_bytes": {
+    "total": 17958,
+    "per_party": 5986,
+    "per_round": [
+      { "round_label": "round1", "bytes": 2889, "exactness": "upper_bound_estimate" },
+      { "round_label": "round2", "bytes": 8682, "exactness": "exact" },
+      { "round_label": "round3", "bytes": 6387, "exactness": "exact" }
+    ],
+    "per_round_comparable_across_impl": false
+  },
+  "object_sizes_bytes": {
+    "signature": 64,
+    "ec_public_key": 33,
+    "ec_key_share": 32,
+    "enc_public_key": 292,
+    "enc_key_share": 105,
+    "enc_ciphertext": 585
+  },
+  "correctness": { "all_signatures_valid": true },
+  "environment": { "os": "darwin", "impl_language": "cpp17" },
+  "notes": ""
+}

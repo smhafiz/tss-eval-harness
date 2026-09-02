@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://tss-eval-harness/schema/result_schema.json",
+  "title": "Threshold-signature evaluation result",
+  "description": "One benchmark run for a single (implementation, security-level, n, t) cell. See SCHEMA.md for field-by-field semantics and cross-implementation comparability caveats.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "implementation", "protocol_name", "git_commit",
+    "security", "params", "trials", "timing_ms", "throughput_sig_per_sec",
+    "bandwidth_bytes", "object_sizes_bytes", "correctness", "environment", "notes"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "implementation": { "type": "string", "enum": ["tr-ecdsa", "tss-lib"] },
+    "protocol_name": { "type": "string" },
+    "git_commit": { "type": "string" },
+
+    "security": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "enc_scheme", "enc_modulus_bits"],
+      "properties": {
+        "label": { "type": "string" },
+        "enc_scheme": { "type": "string" },
+        "enc_modulus_bits": { "type": ["integer", "null"] }
+      }
+    },
+
+    "params": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["n", "t", "signers"],
+      "properties": {
+        "n": { "type": "integer", "minimum": 1 },
+        "t": { "type": "integer", "minimum": 0 },
+        "signers": { "type": "integer", "minimum": 1 }
+      }
+    },
+
+    "trials": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["setup_trials", "dkg_trials", "sign_trials"],
+      "properties": {
+        "setup_trials": { "type": "integer", "minimum": 0 },
+        "dkg_trials": { "type": "integer", "minimum": 0 },
+        "sign_trials": { "type": "integer", "minimum": 0 }
+      }
+    },
+
+    "timing_ms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["setup", "dkg_or_keygen", "sign", "verify"],
+      "properties": {
+        "setup":         { "$ref": "#/$defs/statsOrNull" },
+        "dkg_or_keygen": { "$ref": "#/$defs/statsOrNull" },
+        "sign":          { "$ref": "#/$defs/statsOrNull" },
+        "verify":        { "$ref": "#/$defs/statsOrNull" }
+      }
+    },
+
+    "throughput_sig_per_sec": { "type": "number", "minimum": 0 },
+
+    "bandwidth_bytes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "per_party", "per_round", "per_round_comparable_across_impl"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "per_party": { "type": "number", "minimum": 0 },
+        "per_round": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["round_label", "bytes", "exactness"],
+            "properties": {
+              "round_label": { "type": "string" },
+              "bytes": { "type": "integer", "minimum": 0 },
+              "exactness": { "type": "string", "enum": ["exact", "upper_bound_estimate", "sampled"] }
+            }
+          }
+        },
+        "per_round_comparable_across_impl": { "type": "boolean" }
+      }
+    },
+
+    "object_sizes_bytes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["signature", "ec_public_key", "ec_key_share", "enc_public_key", "enc_key_share", "enc_ciphertext"],
+      "properties": {
+        "signature": { "type": "integer", "minimum": 0 },
+        "ec_public_key": { "type": "integer", "minimum": 0 },
+        "ec_key_share": { "type": "integer", "minimum": 0 },
+        "enc_public_key": { "type": "integer", "minimum": 0 },
+        "enc_key_share": { "type": "integer", "minimum": 0 },
+        "enc_ciphertext": { "type": "integer", "minimum": 0 }
+      }
+    },
+
+    "correctness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["all_signatures_valid"],
+      "properties": {
+        "all_signatures_valid": { "type": "boolean" }
+      }
+    },
+
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["os", "impl_language"],
+      "properties": {
+        "os": { "type": "string" },
+        "impl_language": { "type": "string" },
+        "impl_build_flags": { "type": "string" }
+      }
+    },
+
+    "notes": { "type": "string" }
+  },
+
+  "$defs": {
+    "statsOrNull": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mean", "min", "max", "stddev"],
+          "properties": {
+            "mean": { "type": "number", "minimum": 0 },
+            "min": { "type": "number", "minimum": 0 },
+            "max": { "type": "number", "minimum": 0 },
+            "stddev": { "type": "number", "minimum": 0 }
+          }
+        },
+        { "type": "null" }
+      ]
+    }
+  }
+}
