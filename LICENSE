@@ -1,0 +1,39 @@
+Copyright (c) 2026 Syed Hafiz. All Rights Reserved.
+
+This software and its accompanying documentation, measurement data, and result
+schema (the "Software") are proprietary and confidential.
+
+No license, express or implied, is granted to any person to use, copy, modify,
+merge, publish, distribute, sublicense, or sell copies of the Software, or to
+prepare derivative works of it, except under a separate written agreement
+signed by the copyright holder. Unauthorized copying or distribution of the
+Software, in whole or in part, by any medium, is prohibited.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+THIRD-PARTY COMPONENTS
+----------------------
+
+This repository contains no third-party source code. It references the
+following independently-licensed projects, each of which remains under its own
+license and is NOT covered by the terms above:
+
+  - bnb-chain/tss-lib (MIT) — resolved as a Go module dependency by
+    adapters/tss-lib; its source is not included here.
+
+  - Three-Round-Multiparty-ECDSA (MIT) — built separately; the orchestrator
+    executes its `trecdsa-eval` binary as a subprocess.
+
+  - BICYCL (GNU GPL v3.0 or later) — a submodule of
+    Three-Round-Multiparty-ECDSA, reached only through that project.
+
+Distributing binaries built from those projects carries their licensing
+obligations — in particular, a `trecdsa-eval` binary links BICYCL and is
+therefore subject to the GPL. Those obligations attach to such binaries, not to
+the source in this repository.

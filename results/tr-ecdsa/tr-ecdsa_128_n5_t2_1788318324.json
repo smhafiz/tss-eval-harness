@@ -11,12 +11,12 @@
   "params": { "n": 5, "t": 2, "signers": 3 },
   "trials": { "setup_trials": 2, "dkg_trials": 2, "sign_trials": 8 },
   "timing_ms": {
-    "setup": { "mean": 281.016271, "min": 279.305166, "max": 282.727375, "stddev": 1.7111045 },
-    "dkg_or_keygen": { "mean": 87.013687, "min": 86.096458, "max": 87.930916, "stddev": 0.917229 },
-    "sign": { "mean": 2190.92038, "min": 2181.52608, "max": 2203.30337, "stddev": 6.38280882 },
-    "verify": { "mean": 0.15495825, "min": 0.150291, "max": 0.178792, "stddev": 0.00902388979 }
+    "setup": { "mean": 286.315854, "min": 283.388666, "max": 289.243042, "stddev": 2.927188 },
+    "dkg_or_keygen": { "mean": 91.635875, "min": 91.4765, "max": 91.79525, "stddev": 0.159375 },
+    "sign": { "mean": 2179.31904, "min": 2160.98063, "max": 2199.3695, "stddev": 11.0811744 },
+    "verify": { "mean": 0.145234375, "min": 0.137709, "max": 0.173958, "stddev": 0.011983582 }
   },
-  "throughput_sig_per_sec": 0.456429183,
+  "throughput_sig_per_sec": 0.458858928,
   "bandwidth_bytes": {
     "total": 17955,
     "per_party": 5985,

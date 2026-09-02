@@ -11,19 +11,19 @@
   "params": { "n": 3, "t": 1, "signers": 2 },
   "trials": { "setup_trials": 2, "dkg_trials": 2, "sign_trials": 8 },
   "timing_ms": {
-    "setup": { "mean": 137.886458, "min": 137.574583, "max": 138.198333, "stddev": 0.311875 },
-    "dkg_or_keygen": { "mean": 31.150292, "min": 31.126834, "max": 31.17375, "stddev": 0.023458 },
-    "sign": { "mean": 648.640203, "min": 628.739084, "max": 663.642, "stddev": 14.7046511 },
-    "verify": { "mean": 0.12636975, "min": 0.122625, "max": 0.138708, "stddev": 0.00507300337 }
+    "setup": { "mean": 142.543041, "min": 136.217916, "max": 148.868167, "stddev": 6.3251255 },
+    "dkg_or_keygen": { "mean": 34.033104, "min": 33.827333, "max": 34.238875, "stddev": 0.205771 },
+    "sign": { "mean": 653.016589, "min": 645.176125, "max": 660.020625, "stddev": 4.90883546 },
+    "verify": { "mean": 0.125723875, "min": 0.123125, "max": 0.135292, "stddev": 0.0038849764 }
   },
-  "throughput_sig_per_sec": 1.54168674,
+  "throughput_sig_per_sec": 1.53135467,
   "bandwidth_bytes": {
     "total": 9315,
     "per_party": 4657.5,
     "per_round": [
       { "round_label": "round1", "bytes": 1504, "exactness": "upper_bound_estimate" },
-      { "round_label": "round2", "bytes": 4513, "exactness": "exact" },
-      { "round_label": "round3", "bytes": 3298, "exactness": "exact" }
+      { "round_label": "round2", "bytes": 4510, "exactness": "exact" },
+      { "round_label": "round3", "bytes": 3301, "exactness": "exact" }
     ],
     "per_round_comparable_across_impl": false
   },
@@ -33,7 +33,7 @@
     "ec_key_share": 28,
     "enc_public_key": 224,
     "enc_key_share": 74,
-    "enc_ciphertext": 450
+    "enc_ciphertext": 451
   },
   "correctness": { "all_signatures_valid": true },
   "environment": { "os": "darwin", "impl_language": "cpp17" },

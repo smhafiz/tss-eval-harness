@@ -398,6 +398,16 @@ commit that added the bench app, written for exactly this purpose.
 | `enc_ciphertext` | 449 vs the old binary's 450 — see below |
 | Schema validation | passes |
 | Build under `-Werror`, full test suite | clean, 3/3 pass |
+| Clean clone of the committed repo builds it | yes |
+
+A note on how that verification nearly went wrong: `run_grid.sh` originally
+asked `cmake --build` for the *output file name* (`trecdsa-eval`) rather than
+the CMake *target* (`trecdsa_eval`). Make matched the stale binary already
+sitting in the build directory, reported it up to date and exited 0, so a full
+grid was measured with the old July binary while appearing to build from
+source. The tell was `enc_ciphertext`: 450 everywhere, the old binary's fixed
+value, where the rewritten app yields 449/451. `run_grid.sh` now builds the
+target by its real name and deletes any existing binary first.
 
 The `enc_ciphertext` byte is not a defect. A QFI coefficient's length depends
 on the value drawn, and the quantity ranges over 448–451; the two binaries land

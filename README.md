@@ -25,6 +25,7 @@ the implementation repos as external dependencies checked out elsewhere.
 
 ```
 repos.env             # where the implementation repos live (+ build-dir override)
+libs/                 # the two implementations, as pinned git submodules
 adapters/tss-lib/     # Go adapter: a tecdsa-eval binary built against bnb-chain/tss-lib
 orchestrator/         # grid.tsv (the (n,t) sweep) + run_grid.sh (build-and-run driver)
 schema/               # result_schema.json + SCHEMA.md (field reference and caveats)
@@ -43,8 +44,10 @@ tss-lib checkout instead, add a `go.work` as described in
 
 ### Upstream projects
 
-Both implementations are third-party open-source projects, not part of this
-repo:
+Both implementations are third-party open-source projects. They are vendored
+under `libs/` as submodules of private mirrors, pinned to the benchmarked
+commits (`76ca73f` and `v3.0.0` / `3f677ff`), and remain under their own
+licenses — see LICENSE:
 
 - **tr-ecdsa** — [Jiangjiang-jiang/Three-Round-Multiparty-ECDSA](https://github.com/Jiangjiang-jiang/Three-Round-Multiparty-ECDSA) (MIT).
   It vendors [BICYCL](https://gite.lirmm.fr/crypto/bicycl) as a submodule,
@@ -54,11 +57,10 @@ repo:
 ## Usage
 
 ```bash
-# 1. The tss-lib adapter builds against the published module and needs no
-#    checkout. For the tr-ecdsa half, check out TR-ECDSA as a sibling of this
-#    repo (or export TRECDSA_REPO to point elsewhere):
-#      git clone --recurse-submodules \
-#        https://github.com/Jiangjiang-jiang/Three-Round-Multiparty-ECDSA.git
+# 1. Get the implementation repos. They are submodules under libs/, pinned to
+#    the exact commits the committed results were measured against.
+#    --recursive matters: TR-ECDSA carries BICYCL as a submodule of its own.
+git submodule update --init --recursive
 
 # 2. Build both adapters and sweep the grid.
 orchestrator/run_grid.sh                       # full grid, security levels 112 and 128

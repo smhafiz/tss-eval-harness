@@ -8,22 +8,22 @@
     "enc_scheme": "CL_HSMqk",
     "enc_modulus_bits": null
   },
-  "params": { "n": 3, "t": 2, "signers": 3 },
+  "params": { "n": 5, "t": 2, "signers": 3 },
   "trials": { "setup_trials": 2, "dkg_trials": 2, "sign_trials": 8 },
   "timing_ms": {
-    "setup": { "mean": 137.307187, "min": 136.330542, "max": 138.283833, "stddev": 0.9766455 },
-    "dkg_or_keygen": { "mean": 31.733583, "min": 31.580041, "max": 31.887125, "stddev": 0.153542 },
-    "sign": { "mean": 1301.17528, "min": 1290.38513, "max": 1309.51196, "stddev": 7.06006417 },
-    "verify": { "mean": 0.187604375, "min": 0.180333, "max": 0.209, "stddev": 0.0102437704 }
+    "setup": { "mean": 137.449124, "min": 136.745916, "max": 138.152333, "stddev": 0.7032085 },
+    "dkg_or_keygen": { "mean": 50.317104, "min": 50.269666, "max": 50.364542, "stddev": 0.047438 },
+    "sign": { "mean": 1291.90902, "min": 1286.25388, "max": 1314.55225, "stddev": 8.77143856 },
+    "verify": { "mean": 0.190958375, "min": 0.182708, "max": 0.208583, "stddev": 0.00867397028 }
   },
-  "throughput_sig_per_sec": 0.768535965,
+  "throughput_sig_per_sec": 0.774048314,
   "bandwidth_bytes": {
-    "total": 13961,
-    "per_party": 4653.66667,
+    "total": 13977,
+    "per_party": 4659,
     "per_round": [
       { "round_label": "round1", "bytes": 2256, "exactness": "upper_bound_estimate" },
-      { "round_label": "round2", "bytes": 6760, "exactness": "exact" },
-      { "round_label": "round3", "bytes": 4945, "exactness": "exact" }
+      { "round_label": "round2", "bytes": 6771, "exactness": "exact" },
+      { "round_label": "round3", "bytes": 4950, "exactness": "exact" }
     ],
     "per_round_comparable_across_impl": false
   },
@@ -32,8 +32,8 @@
     "ec_public_key": 29,
     "ec_key_share": 28,
     "enc_public_key": 224,
-    "enc_key_share": 74,
-    "enc_ciphertext": 450
+    "enc_key_share": 75,
+    "enc_ciphertext": 449
   },
   "correctness": { "all_signatures_valid": true },
   "environment": { "os": "darwin", "impl_language": "cpp17" },

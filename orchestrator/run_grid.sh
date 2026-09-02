@@ -87,7 +87,12 @@ build_trecdsa() {
         -DTRECDSA_BUILD_EVAL=ON \
         -DTRECDSA_BUILD_BENCH=OFF \
         -DTRECDSA_BUILD_TESTS=OFF >/dev/null || return 1
-  cmake --build "$build_dir" --target trecdsa-eval -j "$(getconf _NPROCESSORS_ONLN)" >/dev/null || return 1
+  # Build the CMake TARGET (trecdsa_eval), not the output file name
+  # (trecdsa-eval). Asking make for the output name silently matches a stale
+  # binary left in the build directory, reports "up to date", and exits 0 --
+  # which once produced a whole grid measured with an old binary.
+  rm -f "$TRECDSA_EVAL"
+  cmake --build "$build_dir" --target trecdsa_eval -j "$(getconf _NPROCESSORS_ONLN)" >/dev/null || return 1
   [[ -x "$TRECDSA_EVAL" ]] || TRECDSA_EVAL="$(find "$build_dir" -name trecdsa-eval -type f -perm -u+x | head -1)"
   [[ -x "$TRECDSA_EVAL" ]]
 }

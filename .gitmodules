@@ -1,0 +1,6 @@
+[submodule "libs/Three-Round-Multiparty-ECDSA"]
+	path = libs/Three-Round-Multiparty-ECDSA
+	url = https://github.com/smhafiz/Three-Round-Multiparty-ECDSA.git
+[submodule "libs/tss-lib"]
+	path = libs/tss-lib
+	url = https://github.com/smhafiz/tss-lib.git

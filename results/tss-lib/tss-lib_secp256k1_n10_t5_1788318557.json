@@ -9,89 +9,89 @@
     "enc_modulus_bits": 2048
   },
   "params": {
-    "n": 3,
-    "t": 1,
-    "signers": 2
+    "n": 10,
+    "t": 5,
+    "signers": 6
   },
   "trials": {
-    "setup_trials": 3,
+    "setup_trials": 10,
     "dkg_trials": 1,
     "sign_trials": 8
   },
   "timing_ms": {
     "setup": {
-      "mean": 4198.4595973333335,
-      "min": 2229.438125,
-      "max": 5563.930125,
-      "stddev": 1426.631120652665
+      "mean": 4552.6653416,
+      "min": 1527.1145000000001,
+      "max": 8543.174875,
+      "stddev": 2287.6132188194692
     },
     "dkg_or_keygen": {
-      "mean": 2074.9847090000003,
-      "min": 2074.9847090000003,
-      "max": 2074.9847090000003,
+      "mean": 11535.444333000001,
+      "min": 11535.444333000001,
+      "max": 11535.444333000001,
       "stddev": 0
     },
     "sign": {
-      "mean": 161.456151125,
-      "min": 159.69174999999998,
-      "max": 165.743875,
-      "stddev": 1.7274771615419755
+      "mean": 1051.271650875,
+      "min": 1037.0807909999999,
+      "max": 1077.024375,
+      "stddev": 11.821108852097828
     },
     "verify": {
-      "mean": 0.168994625,
-      "min": 0.16275,
-      "max": 0.19229100000000002,
-      "stddev": 0.00993328251306561
+      "mean": 0.16325,
+      "min": 0.15829200000000002,
+      "max": 0.18187499999999998,
+      "stddev": 0.007351445912199852
     }
   },
-  "throughput_sig_per_sec": 6.193632097830674,
+  "throughput_sig_per_sec": 0.951228922769557,
   "bandwidth_bytes": {
-    "total": 21414,
-    "per_party": 10707,
+    "total": 284818,
+    "per_party": 47469.666666666664,
     "per_round": [
       {
-        "round_label": "round1",
-        "bytes": 4874,
-        "exactness": "exact"
-      },
-      {
-        "round_label": "round2",
-        "bytes": 13718,
-        "exactness": "exact"
-      },
-      {
         "round_label": "round3",
-        "bytes": 208,
-        "exactness": "exact"
-      },
-      {
-        "round_label": "round4",
-        "bytes": 550,
-        "exactness": "exact"
-      },
-      {
-        "round_label": "round5",
-        "bytes": 208,
+        "bytes": 624,
         "exactness": "exact"
       },
       {
         "round_label": "round6",
-        "bytes": 958,
+        "bytes": 2874,
         "exactness": "exact"
       },
       {
         "round_label": "round7",
-        "bytes": 208,
+        "bytes": 624,
         "exactness": "exact"
       },
       {
         "round_label": "round8",
-        "bytes": 482,
+        "bytes": 1446,
         "exactness": "exact"
       },
       {
         "round_label": "round9",
-        "bytes": 208,
+        "bytes": 624,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round1",
+        "bytes": 70587,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round4",
+        "bytes": 1649,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round5",
+        "bytes": 624,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round2",
+        "bytes": 205766,
         "exactness": "exact"
       }
     ],
