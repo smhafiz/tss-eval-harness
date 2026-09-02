@@ -44,15 +44,20 @@ tss-lib checkout instead, add a `go.work` as described in
 
 ### Upstream projects
 
-Both implementations are third-party open-source projects. They are vendored
-under `libs/` as submodules of private mirrors, pinned to the benchmarked
-commits (`76ca73f` and `v3.0.0` / `3f677ff`), and remain under their own
-licenses — see LICENSE:
+Both implementations are third-party open-source projects, vendored under
+`libs/` as submodules pinned to the exact commits the results were measured
+against, and remaining under their own licenses — see LICENSE:
 
-- **tr-ecdsa** — [Jiangjiang-jiang/Three-Round-Multiparty-ECDSA](https://github.com/Jiangjiang-jiang/Three-Round-Multiparty-ECDSA) (MIT).
-  It vendors [BICYCL](https://gite.lirmm.fr/crypto/bicycl) as a submodule,
-  which is **GPL-3.0-or-later** — relevant if you redistribute built binaries.
-- **tss-lib** — [bnb-chain/tss-lib](https://github.com/bnb-chain/tss-lib) (MIT).
+- **tr-ecdsa** — upstream is
+  [Jiangjiang-jiang/Three-Round-Multiparty-ECDSA](https://github.com/Jiangjiang-jiang/Three-Round-Multiparty-ECDSA)
+  (MIT). `libs/` pins [a fork](https://github.com/smhafiz/Three-Round-Multiparty-ECDSA)
+  at `17bb21b`, which adds the bandwidth/object-size instrumentation and the
+  `trecdsa-eval` app this harness drives — none of which exists upstream, so
+  the harness cannot measure an unmodified checkout. That project vendors
+  [BICYCL](https://gite.lirmm.fr/crypto/bicycl) as a submodule, which is
+  **GPL-3.0-or-later** — relevant if you redistribute built binaries.
+- **tss-lib** — [bnb-chain/tss-lib](https://github.com/bnb-chain/tss-lib) (MIT),
+  pinned at `v3.0.0` (`3f677ff`), used unmodified.
 
 ## Usage
 

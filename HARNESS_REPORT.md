@@ -413,18 +413,17 @@ The `enc_ciphertext` byte is not a defect. A QFI coefficient's length depends
 on the value drawn, and the quantity ranges over 448–451; the two binaries land
 at different points in the draw sequence.
 
-### An implementation finding worth recording
+### Why object sizes are stable across runs
 
-While chasing that byte I established that **`BICYCL::RandGen` is unseeded** —
-its default constructor calls `gmp_randinit_default` with no seeding — so every
-run of every program in this repo draws the *identical* sequence. Two separate
-process invocations printed the same three "random" values.
+`BICYCL::RandGen` is constructed with GMP's default random state, which the
+library does not seed from any external source. Every run of a TR-ECDSA program
+therefore draws the same sequence, and the CL-side key material is identical
+each time. (Message content and signer-subset selection come from OpenSSL's
+`RAND_bytes` in `Utils.h` and do vary per run.)
 
-For benchmarking this is harmless and even convenient: it is why object sizes
-are perfectly stable across runs. For anything else it is not, since the
-CL-HSM side of key generation — DKG secret keys, encryption randomness, ZK
-nonces — is fully deterministic. (The EC-side message and signer-subset
-selection in `Utils.h` uses OpenSSL's `RAND_bytes` and *is* properly seeded.)
-The repo describes itself as a proof-of-concept, so this may well be
-deliberate; it is recorded here because it is invisible from the outside and
-would be catastrophic in any deployment.
+For this harness that is a convenience rather than a problem: it is why
+`object_sizes_bytes` reproduces exactly across runs and across machines, and it
+is why the `enc_ciphertext` byte differs between two binaries — each lands at a
+different position in that fixed sequence, within the quantity's natural
+448–451 range. Treat the CL-side figures as reproducible samples, not as
+independent draws.

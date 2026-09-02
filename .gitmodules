@@ -3,4 +3,4 @@
 	url = https://github.com/smhafiz/Three-Round-Multiparty-ECDSA.git
 [submodule "libs/tss-lib"]
 	path = libs/tss-lib
-	url = https://github.com/smhafiz/tss-lib.git
+	url = https://github.com/bnb-chain/tss-lib.git
