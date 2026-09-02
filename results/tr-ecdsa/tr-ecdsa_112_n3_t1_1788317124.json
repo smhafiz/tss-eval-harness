@@ -2,7 +2,7 @@
   "schema_version": 1,
   "implementation": "tr-ecdsa",
   "protocol_name": "TR-ECDSA (3-round, CL-HSM)",
-  "git_commit": "unknown",
+  "git_commit": "76ca73f",
   "security": {
     "label": "112",
     "enc_scheme": "CL_HSMqk",
@@ -11,19 +11,19 @@
   "params": { "n": 3, "t": 1, "signers": 2 },
   "trials": { "setup_trials": 2, "dkg_trials": 2, "sign_trials": 8 },
   "timing_ms": {
-    "setup": { "mean": 140.112979, "min": 138.341958, "max": 141.884, "stddev": 1.771021 },
-    "dkg_or_keygen": { "mean": 32.507167, "min": 32.411917, "max": 32.602417, "stddev": 0.09525 },
-    "sign": { "mean": 662.131641, "min": 657.120875, "max": 668.083583, "stddev": 3.58851714 },
-    "verify": { "mean": 0.1249895, "min": 0.116708, "max": 0.152625, "stddev": 0.0113787838 }
+    "setup": { "mean": 137.886458, "min": 137.574583, "max": 138.198333, "stddev": 0.311875 },
+    "dkg_or_keygen": { "mean": 31.150292, "min": 31.126834, "max": 31.17375, "stddev": 0.023458 },
+    "sign": { "mean": 648.640203, "min": 628.739084, "max": 663.642, "stddev": 14.7046511 },
+    "verify": { "mean": 0.12636975, "min": 0.122625, "max": 0.138708, "stddev": 0.00507300337 }
   },
-  "throughput_sig_per_sec": 1.5102737,
+  "throughput_sig_per_sec": 1.54168674,
   "bandwidth_bytes": {
-    "total": 9317,
-    "per_party": 4658.5,
+    "total": 9315,
+    "per_party": 4657.5,
     "per_round": [
       { "round_label": "round1", "bytes": 1504, "exactness": "upper_bound_estimate" },
       { "round_label": "round2", "bytes": 4513, "exactness": "exact" },
-      { "round_label": "round3", "bytes": 3300, "exactness": "exact" }
+      { "round_label": "round3", "bytes": 3298, "exactness": "exact" }
     ],
     "per_round_comparable_across_impl": false
   },

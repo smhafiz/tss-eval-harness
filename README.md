@@ -74,19 +74,10 @@ A failing cell logs to stderr and increments a failure counter rather than
 aborting the sweep, so one bad `(n,t)` doesn't cost the rest of the grid.
 `aggregate.py` is stdlib-only.
 
-> **Known gap — the tr-ecdsa eval app.** `run_grid.sh` builds `trecdsa-eval`
-> with `-DTRECDSA_BUILD_EVAL=ON`, but neither that CMake option nor
-> `apps/eval/main.cpp` exists in the TR-ECDSA repo: they were written as
-> uncommitted working-tree changes and lost. The tss-lib half is unaffected and
-> builds from source normally. Until the eval app is rewritten, tr-ecdsa cells
-> need a prebuilt binary:
->
-> ```bash
-> TRECDSA_EVAL=/path/to/trecdsa-eval orchestrator/run_grid.sh --skip-build
-> ```
->
-> Without one, `run_grid.sh` reports the failed build and sweeps the tss-lib
-> cells rather than aborting.
+Both adapters build from source: the tss-lib module against the published
+`tss-lib v3.0.0`, and `trecdsa-eval` from the TR-ECDSA repo via
+`-DTRECDSA_BUILD_EVAL=ON`. To drive a prebuilt binary instead, point
+`TRECDSA_EVAL` / `TSSLIB_EVAL` at it and pass `--skip-build`.
 
 ## Reading the results
 

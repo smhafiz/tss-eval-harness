@@ -2,86 +2,96 @@
   "schema_version": 1,
   "implementation": "tss-lib",
   "protocol_name": "GG18 (9-round, Paillier)",
-  "git_commit": "unknown",
+  "git_commit": "3f677ff",
   "security": {
     "label": "secp256k1",
     "enc_scheme": "Paillier",
     "enc_modulus_bits": 2048
   },
   "params": {
-    "n": 5,
-    "t": 2,
-    "signers": 3
+    "n": 10,
+    "t": 5,
+    "signers": 6
   },
   "trials": {
-    "setup_trials": 0,
-    "dkg_trials": 0,
+    "setup_trials": 10,
+    "dkg_trials": 1,
     "sign_trials": 8
   },
   "timing_ms": {
-    "setup": null,
-    "dkg_or_keygen": null,
+    "setup": {
+      "mean": 3986.517504200001,
+      "min": 1496.730833,
+      "max": 7658.759709,
+      "stddev": 1924.5168059922617
+    },
+    "dkg_or_keygen": {
+      "mean": 11283.249667,
+      "min": 11283.249667,
+      "max": 11283.249667,
+      "stddev": 0
+    },
     "sign": {
-      "mean": 271.460666875,
-      "min": 262.658875,
-      "max": 292.835583,
-      "stddev": 9.100798230111561
+      "mean": 1064.5119636250001,
+      "min": 1047.237041,
+      "max": 1093.402459,
+      "stddev": 15.780007092730303
     },
     "verify": {
-      "mean": 0.171125,
-      "min": 0.163792,
-      "max": 0.179042,
-      "stddev": 0.0051912740729034915
+      "mean": 0.16963562499999998,
+      "min": 0.163917,
+      "max": 0.17962499999999998,
+      "stddev": 0.005703434797065274
     }
   },
-  "throughput_sig_per_sec": 3.6837749332593797,
+  "throughput_sig_per_sec": 0.9393976152176661,
   "bandwidth_bytes": {
-    "total": 59693,
-    "per_party": 19897.666666666668,
+    "total": 284820,
+    "per_party": 47470,
     "per_round": [
       {
-        "round_label": "round8",
-        "bytes": 723,
-        "exactness": "exact"
-      },
-      {
-        "round_label": "round9",
-        "bytes": 312,
+        "round_label": "round3",
+        "bytes": 624,
         "exactness": "exact"
       },
       {
         "round_label": "round4",
-        "bytes": 825,
+        "bytes": 1650,
         "exactness": "exact"
       },
       {
-        "round_label": "round5",
-        "bytes": 312,
-        "exactness": "exact"
-      },
-      {
-        "round_label": "round6",
-        "bytes": 1436,
-        "exactness": "exact"
-      },
-      {
-        "round_label": "round7",
-        "bytes": 312,
-        "exactness": "exact"
-      },
-      {
-        "round_label": "round1",
-        "bytes": 14307,
+        "round_label": "round9",
+        "bytes": 624,
         "exactness": "exact"
       },
       {
         "round_label": "round2",
-        "bytes": 41154,
+        "bytes": 205764,
         "exactness": "exact"
       },
       {
-        "round_label": "round3",
-        "bytes": 312,
+        "round_label": "round5",
+        "bytes": 624,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round6",
+        "bytes": 2874,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round7",
+        "bytes": 624,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round8",
+        "bytes": 1446,
+        "exactness": "exact"
+      },
+      {
+        "round_label": "round1",
+        "bytes": 70590,
         "exactness": "exact"
       }
     ],
@@ -100,7 +110,7 @@
   },
   "environment": {
     "os": "darwin",
-    "impl_language": "go1.23"
+    "impl_language": "go1.25"
   },
-  "notes": "setup and keygen timing skipped: precomputed fixtures used (see SCHEMA.md caveat 8)"
+  "notes": ""
 }

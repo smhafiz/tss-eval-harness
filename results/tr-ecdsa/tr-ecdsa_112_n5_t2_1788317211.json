@@ -2,28 +2,28 @@
   "schema_version": 1,
   "implementation": "tr-ecdsa",
   "protocol_name": "TR-ECDSA (3-round, CL-HSM)",
-  "git_commit": "unknown",
+  "git_commit": "76ca73f",
   "security": {
     "label": "112",
     "enc_scheme": "CL_HSMqk",
     "enc_modulus_bits": null
   },
-  "params": { "n": 3, "t": 2, "signers": 3 },
+  "params": { "n": 5, "t": 2, "signers": 3 },
   "trials": { "setup_trials": 2, "dkg_trials": 2, "sign_trials": 8 },
   "timing_ms": {
-    "setup": { "mean": 142.265562, "min": 136.931916, "max": 147.599208, "stddev": 5.333646 },
-    "dkg_or_keygen": { "mean": 31.69475, "min": 31.674375, "max": 31.715125, "stddev": 0.020375 },
-    "sign": { "mean": 1292.30269, "min": 1284.20588, "max": 1296.27296, "stddev": 3.52984797 },
-    "verify": { "mean": 0.1869895, "min": 0.180333, "max": 0.201583, "stddev": 0.00709643599 }
+    "setup": { "mean": 142.296042, "min": 139.319958, "max": 145.272125, "stddev": 2.9760835 },
+    "dkg_or_keygen": { "mean": 48.261833, "min": 48.231791, "max": 48.291875, "stddev": 0.030042 },
+    "sign": { "mean": 1298.1413, "min": 1289.23354, "max": 1303.65413, "stddev": 4.92406684 },
+    "verify": { "mean": 0.203499875, "min": 0.181375, "max": 0.270375, "stddev": 0.0295768232 }
   },
-  "throughput_sig_per_sec": 0.773812521,
+  "throughput_sig_per_sec": 0.770332165,
   "bandwidth_bytes": {
-    "total": 13967,
-    "per_party": 4655.66667,
+    "total": 13976,
+    "per_party": 4658.66667,
     "per_round": [
       { "round_label": "round1", "bytes": 2256, "exactness": "upper_bound_estimate" },
-      { "round_label": "round2", "bytes": 6760, "exactness": "exact" },
-      { "round_label": "round3", "bytes": 4951, "exactness": "exact" }
+      { "round_label": "round2", "bytes": 6768, "exactness": "exact" },
+      { "round_label": "round3", "bytes": 4952, "exactness": "exact" }
     ],
     "per_round_comparable_across_impl": false
   },
@@ -32,7 +32,7 @@
     "ec_public_key": 29,
     "ec_key_share": 28,
     "enc_public_key": 224,
-    "enc_key_share": 74,
+    "enc_key_share": 75,
     "enc_ciphertext": 450
   },
   "correctness": { "all_signatures_valid": true },

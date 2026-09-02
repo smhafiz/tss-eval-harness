@@ -307,10 +307,10 @@ artifact `repos.env` warns about, and says nothing about the eval-era build.
 
 ### Not recovered (source only)
 
-- **`apps/eval/main.cpp`** in the TR-ECDSA repo — the eval app's source. It is
-  **not** in the sibling `Three-Round-Multiparty-ECDSA-source.zip` either: that
-  snapshot is dated 2026-07-02 and predates the eval app. The compiled binary
-  is all that remains of it.
+- **`apps/eval/main.cpp`** and the `TRECDSA_BUILD_EVAL` CMake option were lost
+  (written as uncommitted working-tree changes on 2026-07-17, two weeks after
+  the last commit, and absent from the Jul 2 source zip). **Both have since
+  been rewritten** — see "The eval app, rewritten" below.
 - **The rest of the TR-ECDSA repo** is restorable from that zip, which holds
   `CMakeLists.txt`, `src/protocol/*`, `include/trecdsa/*`, `apps/{bench,cli}`,
   `tests/*` and the bundled BICYCL — everything the damaged checkout lost
@@ -366,3 +366,55 @@ requires `~/.tss-eval-build/trecdsa/trecdsa-eval`, whose source
 single-point-of-failure artifact — if it is lost, the tr-ecdsa half of this
 harness cannot be rebuilt without rewriting the eval app. Back it up, and treat
 rewriting `apps/eval/main.cpp` as outstanding work.
+
+---
+
+## The eval app, rewritten (2026-09-01)
+
+The one piece with no archival copy has been reimplemented from three
+independent sources of truth: the surviving binary's CLI, the harness schema,
+and `apps/bench/main.cpp`, whose measurement conventions it follows. It is
+committed to the TR-ECDSA repo as `apps/eval/main.cpp` behind
+`-DTRECDSA_BUILD_EVAL=ON`.
+
+Supporting change: `ObjectSizes` / `Protocol::object_sizes()` were added to the
+public API, mirroring the existing `BandwidthStats` / `last_bandwidth()`
+pattern. The sizes are sampled from real key material at the end of `run_dkg`
+rather than derived from parameters — a CL share's byte length depends on `n`
+(through `delta = n!`) and on the value drawn. The serialized-size helpers this
+uses (`qfi_size_bytes`, `ecpoint_size_bytes`, `zkaok_size_bytes_estimate`, …)
+already existed in `src/compat/bicycl_utils.h`: they were part of the same
+commit that added the bench app, written for exactly this purpose.
+
+### Verification against the surviving binary
+
+| Check | Result |
+|---|---|
+| CLI usage string | byte-identical, including error behaviour |
+| Round-1/2/3 bandwidth split | `3760` / `11288` exact; round 3 within noise |
+| Round-1 `upper_bound_estimate` tag | reproduced |
+| `signature`, `ec_public_key`, `ec_key_share` | 56 / 29 / 28 — exact |
+| `enc_public_key` / `enc_key_share` at n=3, 5, 10 | 224/74, 224/75, 226/77 — **exact at all three**, including the n-dependence |
+| `enc_ciphertext` | 449 vs the old binary's 450 — see below |
+| Schema validation | passes |
+| Build under `-Werror`, full test suite | clean, 3/3 pass |
+
+The `enc_ciphertext` byte is not a defect. A QFI coefficient's length depends
+on the value drawn, and the quantity ranges over 448–451; the two binaries land
+at different points in the draw sequence.
+
+### An implementation finding worth recording
+
+While chasing that byte I established that **`BICYCL::RandGen` is unseeded** —
+its default constructor calls `gmp_randinit_default` with no seeding — so every
+run of every program in this repo draws the *identical* sequence. Two separate
+process invocations printed the same three "random" values.
+
+For benchmarking this is harmless and even convenient: it is why object sizes
+are perfectly stable across runs. For anything else it is not, since the
+CL-HSM side of key generation — DKG secret keys, encryption randomness, ZK
+nonces — is fully deterministic. (The EC-side message and signer-subset
+selection in `Utils.h` uses OpenSSL's `RAND_bytes` and *is* properly seeded.)
+The repo describes itself as a proof-of-concept, so this may well be
+deliberate; it is recorded here because it is invisible from the outside and
+would be catastrophic in any deployment.
